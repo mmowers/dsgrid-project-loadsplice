@@ -1,0 +1,103 @@
+{
+  dataset_id: "eerload",
+  dataset_type: "modeled",
+  data_source: "EER load",
+  sector_description: "All electricity load sectors and subsectors in contiguous US",
+  description: "All electricity load sectors and subsectors in contiguous US",
+  origin_creator: "Evolved Energy Research",
+  origin_organization: "Evolved Energy Research",
+  origin_contributors: [
+    "Grant Buster",
+  ],
+  origin_project: "",
+  origin_date: "2023-06-04",
+  origin_version: "",
+  source: "",
+  data_classification: "high",
+  tags: [
+  ],
+  trivial_dimensions: [
+  ],
+  use_project_geography_time_zone: false,
+  data_schema: {
+    table_format: {
+      format_type: "unpivoted",
+    },
+    data_schema_type: "one_table",
+  },
+  dimensions: [
+    { 
+     "class": "State",
+      type: "geography",
+      name: "State",
+      display_name: "state",
+      file: "dimensions/geography.csv",
+      module: "dsgrid.dimension.standard",
+      description: "Contiguous US states and DC.",
+    },
+    {
+      type: "sector",
+      "class": "Sector",
+      description: "load sector",
+      file: "dimensions/sector.csv",
+      module: "dsgrid.dimension.standard",
+      name: "Load Sectors",
+      display_name: "Load Sectors",
+      
+    },
+    {
+      type: "subsector",
+      "class": "Subsector",
+      description: "load subsector",
+      file: "dimensions/subsector.csv",
+      module: "dsgrid.dimension.standard",
+      name: "Load Subsector",
+      display_name: "Load Subsector",
+      
+    },
+    {
+      type: "scenario",
+      name: "Load Scenario",
+      display_name: "Load Scenario",
+      file: "../../../project/dimensions/scenario.csv",
+      module: "dsgrid.dimension.standard",
+      "class": "Scenario",
+      description: "load scenario",
+    },
+    {
+      type: "model_year",
+      name: "model year",
+      display_name: "model years",
+      file: "../../../project/dimensions/model_year.csv",
+      module: "dsgrid.dimension.standard",
+      "class": "ModelYear",
+      description: "model years",
+    },
+    {
+      type: 'weather_year',
+      class: 'WeatherYear',
+      name: 'Weather Year',
+      display_name: 'Weather Year',
+      description: 'weather year',
+      file: '../../../project/dimensions/weather_year.csv',
+      module: 'dsgrid.dimension.standard',
+    },
+    {
+      "class": "Time",
+      type: "time",
+      name: "Hour Index",
+      display_name: "Hour Index",
+      ranges: [
+        {
+          start: 0,
+          end: 8783,
+        },
+      ],
+      time_interval_type: "period_beginning",
+      time_type: "representative_period",
+      measurement_type: "total",
+      format: "",
+      description: "Hour index in EST (index 0 is Jan 1, 12am EST).",
+    }, 
+  ]
+}
